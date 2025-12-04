@@ -25,6 +25,14 @@ export class MetricsState {
     return 'critical';
   });
 
+  readonly slaStatus = computed(() => {
+    const compliance = this._stats().slaCompliance;
+    if (compliance >= 99) return 'excellent';
+    if (compliance >= 98) return 'good';
+    if (compliance >= 95) return 'warning';
+    return 'critical';
+  });
+
   readonly anomalyStatus = computed(() => {
     const count = this._stats().activeAnomaliesCount;
     if (count === 0) return 'none';
