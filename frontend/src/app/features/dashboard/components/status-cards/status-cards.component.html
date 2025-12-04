@@ -1,0 +1,83 @@
+<div class="status-cards-grid">
+  <div class="stat-card">
+    @if (loading()) {
+      <app-skeleton height="80px" />
+    } @else {
+      <div class="stat-card-content">
+        <div class="stat-icon workflows">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="stat-details">
+          <h3 class="stat-label">Total Workflows</h3>
+          <p class="stat-value">{{ stats().totalWorkflowsToday }}</p>
+          <span class="stat-description">Today</span>
+        </div>
+      </div>
+    }
+  </div>
+  
+  <div class="stat-card">
+    @if (loading()) {
+      <app-skeleton height="80px" />
+    } @else {
+      <div class="stat-card-content">
+        <div class="stat-icon cycle-time" [class]="'status-' + cycleTimeStatus()">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="stat-details">
+          <h3 class="stat-label">Avg Cycle Time</h3>
+          <p class="stat-value">{{ stats().averageCycleTime }}<span class="unit">min</span></p>
+          <span class="stat-description" [class]="'status-' + cycleTimeStatus()">
+            {{ cycleTimeStatus() | titlecase }}
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+  
+  <div class="stat-card">
+    @if (loading()) {
+      <app-skeleton height="80px" />
+    } @else {
+      <div class="stat-card-content">
+        <div class="stat-icon sla" [class]="'status-' + slaStatus()">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="stat-details">
+          <h3 class="stat-label">SLA Compliance</h3>
+          <p class="stat-value">{{ stats().slaCompliance }}<span class="unit">%</span></p>
+          <span class="stat-description" [class]="'status-' + slaStatus()">
+            {{ slaStatus() | titlecase }}
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+  
+  <div class="stat-card">
+    @if (loading()) {
+      <app-skeleton height="80px" />
+    } @else {
+      <div class="stat-card-content">
+        <div class="stat-icon anomalies" [class]="'status-' + anomalyStatus()">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="stat-details">
+          <h3 class="stat-label">Active Anomalies</h3>
+          <p class="stat-value">{{ stats().activeAnomaliesCount }}</p>
+          <span class="stat-description" [class]="'status-' + anomalyStatus()">
+            {{ anomalyStatus() | titlecase }} Risk
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+</div>

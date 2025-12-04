@@ -1,0 +1,159 @@
+.status-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    transition: none;
+}
+
+.stat-card-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.stat-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.stat-icon.workflows {
+    background: var(--color-info-light);
+    color: var(--color-info);
+}
+
+.stat-icon.cycle-time {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+}
+
+.stat-icon.sla {
+    background: var(--color-success-light);
+    color: var(--color-success);
+}
+
+.stat-icon.anomalies {
+    background: var(--color-warning-light);
+    color: var(--color-warning);
+}
+
+/* Status-based colors for icons */
+.status-excellent,
+.status-fast,
+.status-none {
+    color: var(--color-success) !important;
+}
+
+.status-good,
+.status-normal,
+.status-low {
+    background: var(--color-info-light) !important;
+    color: var(--color-info) !important;
+}
+
+.status-warning,
+.status-slow,
+.status-medium {
+    color: var(--color-warning) !important;
+}
+
+.status-critical,
+.status-high {
+    color: var(--color-danger) !important;
+}
+
+.stat-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.stat-label {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.stat-value .unit {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-left: 0.25rem;
+}
+
+.stat-description {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+    text-transform: capitalize;
+}
+
+/* Status colors for descriptions - text only, no backgrounds */
+.stat-description.status-excellent,
+.stat-description.status-fast,
+.stat-description.status-none {
+    color: var(--color-success);
+}
+
+.stat-description.status-good,
+.stat-description.status-normal,
+.stat-description.status-low {
+    color: var(--color-info);
+}
+
+.stat-description.status-warning,
+.stat-description.status-slow,
+.stat-description.status-medium {
+    color: var(--color-warning);
+}
+
+.stat-description.status-critical,
+.stat-description.status-high {
+    color: var(--color-danger);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .status-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .status-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

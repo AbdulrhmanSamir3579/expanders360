@@ -1,0 +1,77 @@
+<div class="timeline-container">
+  <div class="timeline-header">
+    <h2>Real-Time Event Timeline</h2>
+    <div class="filter-buttons">
+      <button
+        *ngFor="let category of categories"
+        [class.active]="currentCategory() === category.value"
+        (click)="onCategoryChange(category.value)">
+        {{ category.label }}
+        <span *ngIf="categoryActivity()[category.value]" class="activity-dot"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="timeline-wrapper" #timelineWrapper>
+    <div class="timeline-track" [style.width.%]="400">
+      <!-- Timeline line -->
+      <div class="track-line"></div>
+
+      <!-- Events -->
+      <div
+        *ngFor="let event of displayEvents(); trackBy: trackByEventId"
+        [id]="event.id"
+        class="timeline-event"
+        [class]="'event-' + event.status"
+        [class.new-event]="isNewEvent(event)"
+        [style.left.%]="getEventPosition(event.id)"
+        (mouseenter)="showTooltip($event, event)"
+        (mouseleave)="hideTooltip()">
+        <div class="event-marker">
+          <div class="marker-dot"></div>
+          <div class="marker-pulse"></div>
+        </div>
+      </div>
+
+      <!-- Time markers -->
+      <div
+        *ngFor="let marker of timeMarkers; trackBy: trackByMarkerTime"
+        class="time-marker"
+        [class.major-marker]="marker.isMajor"
+        [style.left.%]="marker.position">
+        <div class="marker-line"></div>
+        <span class="marker-time">{{ marker.label }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tooltip -->
+  <div
+    *ngIf="tooltipEvent"
+    class="event-tooltip"
+    [class]="'tooltip-' + tooltipEvent.status"
+    [style.left.px]="tooltipPosition.x"
+    [style.top.px]="tooltipPosition.y">
+    <div class="tooltip-header">
+      <div class="tooltip-type-badge" [class]="'badge-' + tooltipEvent.status">
+        <span class="badge-icon">{{ getEventIcon(tooltipEvent.status) }}</span>
+        <span class="badge-text">{{ getTypeLabel(tooltipEvent.type) }}</span>
+      </div>
+      <div class="tooltip-time">{{ tooltipEvent.timestamp | date: 'MMM d, y HH:mm:ss' }}</div>
+    </div>
+    <div class="tooltip-content">
+      <div class="tooltip-row">
+        <span class="tooltip-label">Title</span>
+        <span class="tooltip-value">{{ tooltipEvent.title }}</span>
+      </div>
+      <div class="tooltip-row">
+        <span class="tooltip-label">Event ID</span>
+        <span class="tooltip-value">{{ tooltipEvent.id }}</span>
+      </div>
+      <div class="tooltip-row">
+        <span class="tooltip-label">Status</span>
+        <span class="tooltip-value">{{ tooltipEvent.status | titlecase }}</span>
+      </div>
+    </div>
+  </div>
+</div>
