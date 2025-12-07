@@ -192,7 +192,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     const target = event.currentTarget as HTMLElement;
     const rect = target.getBoundingClientRect();
     
-    const tooltipWidth = 320;
+    const tooltipWidth = 220;
     const tooltipHeight = 200;
     const gap = 10; // Space between marker and tooltip
 

@@ -71,6 +71,10 @@ import { ChartComponent } from '@shared/charts/chart.component';
     }
     
     @media (max-width: 768px) {
+      .volume-chart-container {
+        padding: 1rem !important;
+      }
+      
       .chart-header {
         flex-direction: column;
         align-items: flex-start;

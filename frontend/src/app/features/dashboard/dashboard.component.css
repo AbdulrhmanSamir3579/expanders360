@@ -199,7 +199,7 @@
   }
 
   .dashboard-container {
-    padding: calc(70px + 1rem) 1rem 1rem;
+    padding: calc(70px + 4rem) 1rem 1rem;
   }
 
   .charts-grid {

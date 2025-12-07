@@ -71,7 +71,7 @@ const startBroadcasting = (): void => {
       });
     }
 
-    const nextDelay = Math.floor(Math.random() * 300000) + 900000;
+    const nextDelay = Math.floor(Math.random() * (400000 - 200000)) + 300000;
     setTimeout(broadcast, nextDelay);
   };
 
